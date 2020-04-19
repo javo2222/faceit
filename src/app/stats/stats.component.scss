@@ -1,0 +1,12 @@
+@import '../shared/styles/colors';
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  .team {
+    flex: 1;
+    margin: 1rem;
+    font-size: 1.5rem;
+
+  }
+}

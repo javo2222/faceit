@@ -1,0 +1,9 @@
+<div *ngIf="mapStats">
+  <div class="map" *ngFor="let stats of mapStats">
+    <img src="{{stats.mapImg}}" />
+    <div class="img-desc">
+      <p class="map-name">{{stats.map}}</p>
+      <p class="map-stats">{{round(stats.winPercentage)}}% ({{stats.matches}} matches)</p>
+    </div>
+  </div>
+</div>

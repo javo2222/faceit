@@ -1,0 +1,8 @@
+<form #f="ngForm" (keyup.enter)="search(f.value)">
+  <div class="header">
+    FACEIT-HELPER
+  </div>
+  <input type="text" placeholder="Faceit Matchroom URL *" name="match" ngModel required/>
+  <button (click)="search(f.value)">Go!</button>
+  <span>e.g. https://www.faceit.com/de/csgo/room/1-1b0edc08-2947-40eb-acca-b0dc0517277d</span>
+</form>
