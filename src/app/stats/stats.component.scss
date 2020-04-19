@@ -1,12 +1,28 @@
 @import '../shared/styles/colors';
 
+
+.team {
+  display: block;
+  width: 100%;
+
+  .team-name {
+    display: inline-block;
+    width: 50%;
+    font-size: 1.8rem;
+    padding: 1rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
 .container {
   display: flex;
-  align-items: flex-start;
-  .team {
-    flex: 1;
-    margin: 1rem;
-    font-size: 1.5rem;
 
+  .team-stats {
+    position: relative;
+    flex: 1 1 50%;
+    padding: 1rem;
+    font-size: 1.5rem;
   }
 }
