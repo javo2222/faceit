@@ -29,6 +29,11 @@
       height: 3rem;
       margin-right: .5rem;
     }
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     &:last-child {
       border-top: .1rem solid lighten($secondary, 20%);
     }
