@@ -1,0 +1,9 @@
+<div class="roster-name">{{team?.name}}</div>
+<div class="players">
+  <div class="player" *ngFor="let player of team?.roster">
+    <img src="assets/level/faceit{{player.game_skill_level}}.png" />{{player.nickname}}
+  </div>
+  <div class="player" *ngIf="averageLevel">
+    <img src="assets/level/faceit{{averageLevel}}.png" />Average
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <div class="team">
-  <div class="team-name">{{team1}}</div>
-  <div class="team-name">{{team2}}</div>
+  <app-roster *ngIf="team1" [team]="team1"></app-roster>
+  <app-roster *ngIf="team2" [team]="team2"></app-roster>
 </div>
 <div class="container">
   <div class="team-stats">

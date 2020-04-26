@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Match} from '../interfaces/match.interface';
 import {StatsService} from './stats.service';
 import {MapStatsDetail} from '../interfaces/map-stats-detail.interface';
+import {Team} from "../interfaces/team.interface";
 
 @Component({
   selector: 'app-stats',
@@ -14,8 +15,8 @@ export class StatsComponent implements OnInit {
 
   mapStatsTeam1: Array<MapStatsDetail> = [];
   mapStatsTeam2: Array<MapStatsDetail> = [];
-  team1: string;
-  team2: string;
+  team1: Team;
+  team2: Team;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private statsService: StatsService) {
   }
@@ -26,8 +27,8 @@ export class StatsComponent implements OnInit {
       if (match) {
         this.http.get(`matches/${match}`).subscribe(r => {
           const m: Match = r as Match;
-          this.team1 = m.teams.faction1.name;
-          this.team2 = m.teams.faction2.name;
+          this.team1 = m.teams.faction1;
+          this.team2 = m.teams.faction2;
           this.statsService.calcTeamMapStats(m.teams.faction1.roster).then(r => {
             this.mapStatsTeam1 = r as Array<MapStatsDetail>;
           });
