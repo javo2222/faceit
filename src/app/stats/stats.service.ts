@@ -4,36 +4,37 @@ import {Player} from '../interfaces/player.interface';
 import {MapStatsDetail} from '../interfaces/map-stats-detail.interface';
 import {PlayerStats} from '../interfaces/player-stats.interface';
 import {MapSegment} from '../interfaces/map-segment.interface';
+import {MapUtilClass} from '../shared/classes/map-util.class';
+import {forkJoin} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatsService {
 
-  private static MAPPOOL = ['de_inferno', 'de_cache', 'de_nuke', 'de_dust2', 'de_train', 'de_vertigo', 'de_mirage', 'de_overpass'];
-
   constructor(private httpClient: HttpClient) {
   }
 
-  calcTeamMapStats(players: Array<Player>): Promise<any> {
+  calcTeamMapStats(players: Array<Player>): Array<MapStatsDetail> {
     let mapPool = [];
-    return new Promise((resolve, reject) => {
-      players.forEach(player => {
-        console.log(player.nickname);
-        this.httpClient.get(`players/${player.player_id}/stats/csgo`).subscribe(ps => {
-          const playerStats: PlayerStats = ps as PlayerStats;
-          playerStats.segments.forEach(segment => {
-            mapPool = this.enhanceMapPool(mapPool, segment);
-          });
+    const playerResponses = [];
+    players.forEach((player, index) => {
+      playerResponses.push(this.httpClient.get(`players/${player.player_id}/stats/csgo`));
+    });
+    forkJoin(playerResponses).subscribe(response => {
+      response.forEach(ps => {
+        const playerStats: PlayerStats = ps as PlayerStats;
+        playerStats.segments.forEach(segment => {
+          mapPool = this.enhanceMapPool(mapPool, segment);
         });
       });
-      resolve(mapPool);
     });
+    return mapPool;
   }
 
   enhanceMapPool(mapPool: Array<MapStatsDetail>, segment: MapSegment): Array<MapStatsDetail> {
     const index = mapPool.findIndex(m => m.map === segment.label);
-    if (StatsService.MAPPOOL.includes(segment.label)) {
+    if (MapUtilClass.MAPPOOL.includes(segment.label)) {
       if (index === -1) {
         const mapStats: MapStatsDetail = {
           kdRatio: +segment.stats['K/D Ratio'],
@@ -73,9 +74,16 @@ export class StatsService {
     return mapPool;
   }
 
-  filterByMappool(maps: Array<MapStatsDetail>): Array<MapStatsDetail> {
-    maps = maps.filter(m => !!StatsService.MAPPOOL.includes(m.map));
-    return maps;
+  convertToWinPercentages(mapStats: Array<MapStatsDetail>): Array<number> {
+    const arr = [];
+    MapUtilClass.MAPPOOL.forEach(map => {
+      mapStats.forEach(m => {
+        if (m.map === map) {
+          arr.push(m.winPercentage);
+        }
+      });
+    });
+    return arr;
   }
 
 }

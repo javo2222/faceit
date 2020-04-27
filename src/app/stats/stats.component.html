@@ -10,4 +10,10 @@
     <app-map-stats [mapStats]="mapStatsTeam2"></app-map-stats>
   </div>
 </div>
+<app-radar-chart *ngIf="team1?.name && team2.name && mapStatsTeam1?.length > 0 && mapStatsTeam2?.length > 0"
+                 [team1]="team1.name"
+                 [team2]="team2.name"
+                 [mapStatsTeam1]="mapStatsTeam1"
+                 [mapStatsTeam2]="mapStatsTeam2"
+></app-radar-chart>
 

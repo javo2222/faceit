@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Match} from '../interfaces/match.interface';
 import {StatsService} from './stats.service';
 import {MapStatsDetail} from '../interfaces/map-stats-detail.interface';
-import {Team} from "../interfaces/team.interface";
+import {Team} from '../interfaces/team.interface';
 
 @Component({
   selector: 'app-stats',
@@ -29,12 +29,8 @@ export class StatsComponent implements OnInit {
           const m: Match = r as Match;
           this.team1 = m.teams.faction1;
           this.team2 = m.teams.faction2;
-          this.statsService.calcTeamMapStats(m.teams.faction1.roster).then(r => {
-            this.mapStatsTeam1 = r as Array<MapStatsDetail>;
-          });
-          this.statsService.calcTeamMapStats(m.teams.faction2.roster).then(r => {
-            this.mapStatsTeam2 = r as Array<MapStatsDetail>;
-          });
+          this.mapStatsTeam1 = this.statsService.calcTeamMapStats(m.teams.faction1.roster);
+          this.mapStatsTeam2 = this.statsService.calcTeamMapStats(m.teams.faction2.roster);
         });
       }
     });

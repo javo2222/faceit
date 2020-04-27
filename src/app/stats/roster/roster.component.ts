@@ -23,12 +23,10 @@ export class RosterComponent implements OnInit {
   calcAvgLevel() {
     let sum = 0;
     let count = 0;
-    console.log(this.team);
     this.team.roster.forEach(player => {
       count++;
       sum += player.game_skill_level;
     });
-    console.log(sum);
     return Math.round(sum / count);
   }
 

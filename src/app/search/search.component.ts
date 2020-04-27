@@ -15,7 +15,6 @@ export class SearchComponent implements OnInit {
   }
 
   search(form: any) {
-    console.log(form.match);
     let match: string = form.match;
     if (match && match.indexOf('/') > -1) {
       const url = form.match.split('/');
