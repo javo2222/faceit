@@ -5,6 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RequestInterceptor} from './request.interceptor';
+import {AnalyticsGuard} from './analytics.guard';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {RequestInterceptor} from './request.interceptor';
     HttpClientModule
   ],
   providers: [
+    AnalyticsGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,
