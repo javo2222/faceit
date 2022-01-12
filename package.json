@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --base-href \"https://javo2222.github.io/faceit-helper/\"",
+    "build": "ng build --prod --base-href \"https://javo2222.github.io/faceit/\"",
     "test": "jest",
     "lint": "ng lint",
     "e2e": "ng e2e"
