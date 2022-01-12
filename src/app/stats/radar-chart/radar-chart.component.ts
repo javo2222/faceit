@@ -37,12 +37,12 @@ export class RadarChartComponent implements OnInit {
           label: this.team1,
           backgroundColor: 'rgba(200,0,0,.1)',
           borderColor: 'rgba(200,0,0,1)',
-          data: this.statsService.convertToWinPercentages(this.mapStatsTeam1)
+          data: Array.from(this.statsService.convertToWinPercentages(this.mapStatsTeam1).values())
         }, {
           label: this.team2,
           backgroundColor: 'rgba(0,0,200,0.1)',
           borderColor: 'rgba(0,0,200,1)',
-          data: this.statsService.convertToWinPercentages(this.mapStatsTeam2)
+          data: Array.from(this.statsService.convertToWinPercentages(this.mapStatsTeam2).values())
         }]
       },
       options: {}

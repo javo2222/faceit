@@ -74,12 +74,13 @@ export class StatsService {
     return mapPool;
   }
 
-  convertToWinPercentages(mapStats: Array<MapStatsDetail>): Array<number> {
-    const arr = [];
+  convertToWinPercentages(mapStats: Array<MapStatsDetail>): Map<string, number> {
+    const arr = new Map<string, number>();
     MapUtilClass.MAPPOOL.forEach(map => {
+      arr.set(map, 0);
       mapStats.forEach(m => {
         if (m.map === map) {
-          arr.push(m.winPercentage);
+          arr.set(map, m.winPercentage);
         }
       });
     });

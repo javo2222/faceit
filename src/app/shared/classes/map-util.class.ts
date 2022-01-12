@@ -1,6 +1,6 @@
 export class MapUtilClass {
 
-  static MAPPOOL = ['de_inferno', 'de_cache', 'de_nuke', 'de_dust2', 'de_train', 'de_vertigo', 'de_mirage', 'de_overpass'];
+  static MAPPOOL = ['de_inferno', 'de_ancient', 'de_nuke', 'de_dust2', 'de_train', 'de_vertigo', 'de_mirage', 'de_overpass'];
   static MAPCOLORS = [
     'rgba(255,100,0,0.71)',
     'rgba(41,147,82,0.7)',
