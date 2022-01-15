@@ -13,6 +13,7 @@ jobs:
         run: |
           npm ci
           npm run build
+          cp dist/faceit-helper/index.html dist/faceit-helper/404.html
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
